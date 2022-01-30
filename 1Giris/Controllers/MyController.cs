@@ -22,6 +22,7 @@ namespace _1Giris.Controllers
             return View();
         }
 
+
         // ViewResult geriye sayfa dönmek için kullanır. Yapılan requestin sonund kullanıcnın syfa görmesi gerekiyorsa bu dönüş tipi kullanılır....
 
         public ViewResult Hakkimda()
