@@ -1,0 +1,43 @@
+﻿
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Sayfam</title>
+</head>
+<body>
+
+    <b>Not:</b> cshtml uzantlı dosyalar razor view engine tarafından yorumlanır. çalışma zamanında bu sayfa View() metodu ile render edilerek kullanıya gönderilir...
+    <br />
+    cshtml doslarının html dosyalarından farkı ek olarak c# komutlarınında yazılabilmesidir...
+
+    <br />
+    @*
+        Eğer bu dosyada c# komutu yazmak istiyorsak @ ifadesi kullanırız.
+
+        Aşağıdaki @DateTime.Now ifesi Ekrana o anki tarihi yazdırır..
+        Eğer @ ifadesi c# komutu ile devam ediyorsa bu Response.Write anlamına gelir..
+        Eğer bir c# ifadesi tanımlamak isteniyorsa @{ c# kods } şeklinde yazılır...
+
+        Bu yazım tekniğine Razor Syntax denir. Çalışma zamanında (runtime) c# kodları razor view engine tarafından temizlenerek client'a gönderilir
+        .*@
+    <b>Bu günün tarihi : <i>@DateTime.Now</i> </b>
+    <br />
+    <hr />
+    @for (int i = 0; i < 5; i++)
+    {
+        <h1>Selam Sana Asp.Net Core Mvc</h1>
+    }
+    <hr />
+    @{ 
+        string isim = "Ekrem YILDIRIM";
+        <h1>@isim</h1>
+    }
+    <i>@isim.ToUpper()</i>
+</body>
+</html>
