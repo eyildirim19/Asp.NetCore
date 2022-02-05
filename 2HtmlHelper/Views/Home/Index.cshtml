@@ -1,0 +1,56 @@
+﻿@{
+    Layout = null;
+}
+<!DOCTYPE html>
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Index</title>
+</head>
+<body>
+
+    <h1>@DateTime.Now</h1>
+    <span>@DateTime.Now</span>
+    <br />
+    <i>@DateTime.Now</i>
+
+    <hr />
+    @*
+        Html.Helper => mvc'de geliştiriciye sunalan yardımcı metotlardır...Bu metotlar ile html çıktıları üretilir..
+    *@
+
+
+    @*Requestler controllera atılır.*@
+    @*
+        Url.Action metodu url render eder...
+    *@
+
+    @Url.Action("About", "Home") @*çıktısı => Home/About *@
+    @Url.Action("About", "Home", new { ID = 1 }) @*Home/About/1*@
+    @Url.Action("About", "Home", new { Title = "Sahibinden" }) @*Home/About?Title=Sahibden*@
+    <br />
+    <a href="Home/About">Hakkımda</a>
+    <br />
+    <a target="_blank" href="@Url.Action("About","Home")">Hakkımda</a>
+    <br />
+    @Html.ActionLink("Kayıt Ol", "Register", "Home")
+    <br />
+    @*
+        ActionLink metodu runtime'da a etiketi render eder...
+    *@
+    @Html.ActionLink("Ben Kimim ??", "About", "Home")
+    <br />
+    @Html.ActionLink("Kimin Ben", "About", "Home", null, new { target = "_blank", id = "mya" })
+    <br />
+    @Html.ActionLink("Ben", "About", "Home",
+       null,
+       new Dictionary<string, object> { { "target", "_blank" }, { "id", "mya" } })
+    <br />
+    @Html.TextBox("txtUserName")
+    <br />
+    @Html.TextBox("txtEmail", null, new { placeholder = "email adresiniz" })
+    <br />
+    @Html.AntiForgeryToken()
+
+</body>
+</html>

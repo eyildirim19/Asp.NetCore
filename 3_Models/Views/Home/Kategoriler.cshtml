@@ -1,0 +1,44 @@
+﻿@model List<_3_Models.Models.Category>
+@*sayfanın modelini belirledik...*@
+@{
+    Layout = null;
+}
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Kategoriler</title>
+    <link href="~/lib/bootstrap/dist/css/bootstrap.css" rel="stylesheet" />
+
+    <style>
+        .list-group-item:hover{
+            background-color:deeppink;
+            color:white;
+        }
+    </style>
+</head>
+<body>
+    @*
+        NOT : bir sayfanın bir modeli olabilir....
+        sayfaya model tanımlarken;
+            model
+        modeli çağrırıken;
+            Model
+        kullanılır
+    *@
+    <b>@Model.Count</b>
+
+    <ul class="list-group">
+        @foreach (var kategori in Model)
+        {
+            <li class="list-group-item">
+                <h1>@kategori.Name</h1>
+                <h3>@kategori.Description</h3>
+            </li>
+        }
+    </ul>
+
+
+</body>
+</html>

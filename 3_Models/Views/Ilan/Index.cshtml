@@ -1,0 +1,50 @@
+﻿@{
+    Layout = null;
+}
+
+@model _3_Models.Models.IlanIndexViewModel
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Index</title>
+    <link href="~/lib/bootstrap/dist/css/bootstrap.css" rel="stylesheet" />
+</head>
+<body>
+    <nav class="navbar navbar-light bg-light">
+        <a class="navbar-brand" href="#">Navbar</a>
+    </nav>
+
+    <br />
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-3">
+                <ul class="list-group">
+                    @foreach (var kat in Model.categories)
+                    {
+                        <li class="list-group-item">@kat.Name</li>
+                    }
+                </ul>
+            </div>
+            <div class="col-lg-9">
+                <table class="table table-bordered">
+                    <tr>
+                        <th>Ürün Adı</th>
+                        <th>Stok</th>
+                        <th>Fiyat</th>
+                    </tr>
+                    @foreach (var urn in Model.products)
+                    {
+                        <tr>
+                            <td>@urn.Name</td>
+                            <td>@urn.Stok</td>
+                            <td>@urn.Price</td>
+                        </tr>
+                    }
+                </table>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
