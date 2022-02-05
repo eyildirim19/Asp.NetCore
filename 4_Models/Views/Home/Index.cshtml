@@ -1,0 +1,25 @@
+﻿@{
+    Layout = null;
+}
+@model _4_Models.Models.User
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Index</title>
+</head>
+<body>
+    @*
+        form clienttan servera veri bind etmek için kullanılır...
+        form elementlerinin name attribute değeri bind edilecek sınıf property ismiyle aynı olmlıdır
+    *@
+    <form method="post">
+        <input type="text" name="UserName" />
+        <br />
+        <input type="text" name="Password" />
+        <br />
+        <input type="submit" value="Giriş Yap.." />
+    </form>
+</body>
+</html>
