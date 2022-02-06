@@ -1,0 +1,74 @@
+﻿
+@{
+    Layout = null;
+}
+@model _6_ModelValidation.Models.User
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Index</title>
+    <link href="~/lib/bootstrap/dist/css/bootstrap.css" rel="stylesheet" />
+
+   
+</head>
+<body>
+
+    <div class="container">
+
+        <div class="row">
+            <div class="col-lg-4">
+
+                @using (Html.BeginForm())
+                {
+                    <div class="form-group">
+                        @Html.LabelFor(c => c.UserName)
+                        @Html.TextBoxFor(c => c.UserName, null, new { @class = "form-control" })
+
+                        <span class="text-danger">
+                            @Html.ValidationMessageFor(c => c.UserName)
+                        </span>
+                    </div>
+                    <div class="form-group">
+                        @Html.LabelFor(c => c.Email)
+                        @Html.TextBoxFor(c => c.Email, null, new { @class = "form-control" })
+
+                        <span class="text-danger">
+                            @Html.ValidationMessageFor(c => c.Email)
+                        </span>
+                    </div>
+
+                    <div class="form-group">
+                        @Html.LabelFor(c => c.Password)
+                        @Html.TextBoxFor(c => c.Password, null, new { @class = "form-control" })
+
+                        <span class="text-danger">
+                            @Html.ValidationMessageFor(c => c.Password)
+                        </span>
+                    </div>
+                    <div class="form-group">
+                        @Html.LabelFor(c => c.Password2)
+                        @Html.TextBoxFor(c => c.Password2, null, new { @class = "form-control" })
+
+                        <span class="text-danger">
+                            @Html.ValidationMessageFor(c => c.Password2)
+                        </span>
+                    </div>
+                    <div class="form-group">
+                        <input type="submit" value="Kayıt Ol" class="btn btn-primary" />
+                    </div>
+                }
+            </div>
+        </div>
+    </div>
+    @*
+        unobtrusive.validate.js ile doğrulama clientta yapılır. doğrulamanın her zmaan clientta yapılması beklenir....
+    *@
+
+    <script src="~/lib/jquery/dist/jquery.js"></script>
+    <script src="~/lib/jquery-validation/dist/jquery.validate.js"></script>
+    <script src="~/lib/jquery-validation-unobtrusive/jquery.validate.unobtrusive.js"></script>
+
+</body>
+</html>

@@ -1,0 +1,23 @@
+﻿
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Detay</title>
+
+    @await Html.PartialAsync("_MyStyle")
+</head>
+<body>
+
+    <a asp-action="Index" asp-controller="Home">Geri Dön</a>
+    <br />
+    <br />
+    @await Html.PartialAsync("_MyPartial")
+
+</body>
+</html>

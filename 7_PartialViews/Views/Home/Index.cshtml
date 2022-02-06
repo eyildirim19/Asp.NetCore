@@ -1,0 +1,58 @@
+﻿
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Index</title>
+
+    @await Html.PartialAsync("_MyStyle")
+<link href="~/lib/bootstrap/dist/css/bootstrap.css" rel="stylesheet" />
+</head>
+<body>
+    @*
+        Partial View (kismi viewlar olark düşünebilebilir.) sayfalarımız içerisinde tekrar eden tasarımlarımız, modüllerimiz vb. yapıların birkere tasarlanıp tekrar kullanılmasıdır...
+
+        view eklerken create as a partial view seçeneği sadece oluşan cshtml dosyasının içeriğinin temizlenmesi için bir kısa yoldur.. çünkü çağrılacak bir partial view içeriisnde sadeece tasarımsal kodlar olmalıdır...
+    *@
+
+    @*
+        örnek partial view çağırma
+    *@
+
+
+    <a asp-action="Detay" asp-controller="Home">Detaya git</a>
+
+    <div id="dv2">
+        @await Html.PartialAsync("_MyPartial")  @*önce viewın buldunduğu klasörde view.cshtml dosyasının arar sonra shared klasörüne bakar. ismi verilen view'ı burada render et...*@
+    </div>
+    <br />
+    <br />
+    @{
+        List<string> sabahcilar = new List<string>();
+        sabahcilar.Add("Furkan");
+        sabahcilar.Add("Suna");
+        sabahcilar.Add("Evren");
+
+
+        List<string> oglenciler = new List<string>();
+        oglenciler.Add("Önder");
+        oglenciler.Add("Bahar");
+        oglenciler.Add("Semiha");
+    }
+
+    <ul class="list-group">
+        @await Html.PartialAsync("_katList", sabahcilar)
+    </ul>
+    <br />
+    <br />
+    <ul class="list-group">
+        @await Html.PartialAsync("_katList", oglenciler)
+    </ul>
+
+</body>
+</html>
