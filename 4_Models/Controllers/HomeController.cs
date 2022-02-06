@@ -28,5 +28,19 @@ namespace _4_Models.Controllers
 
             return View();
         }
+
+        // Not :Actionların HttpMetot default değeri HttpGet'tir
+        [HttpGet]
+        public IActionResult Giris()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        public IActionResult Giris(string UserName, string Password)
+        {
+            return View();
+        }
+
     }
 }

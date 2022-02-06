@@ -1,0 +1,43 @@
+﻿
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Index</title>
+</head>
+<body>
+    <form method="post">
+        <input type="text" name="UserName" />
+        <br />
+        <input type="password" name="Password" />
+        <br />
+        <input type="submit" value="Giriş Yap" />
+    </form>
+    <hr />
+    <form method="post" action="@Url.Action("KayitOl","Home")">
+        <input type="text" name="UserName" placeholder="Kullanıcı adınız" />
+        <br />
+        <input type="text" name="Email" placeholder="Emailiniz" />
+        <br />
+        <input type="text" name="Password" placeholder="Şifreniz" />
+        <br />
+        <input type="submit" value="Kayıt Ol" />
+    </form>
+    <br />
+    <form method="post" action="@Url.Action("SifremiUnuttum","Home")">
+        <input type="email" placeholder="Emailiniz" name="email" /> <input type="submit" value="Şifremi Gönder" />
+    </form>
+
+    <form method="post" action="@Url.Action("EmailAbone","Home")">
+        <input type="email" placeholder="Emailiniz" name="email" /><br />
+        <input type="text" placeholder="adınız" name="Name" />
+        <input type="submit" value="Abone Ol" />
+    </form>
+
+</body>
+</html>
