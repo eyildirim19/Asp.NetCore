@@ -1,0 +1,18 @@
+﻿@{ 
+    // ViewData birbaşka view'a veri göndermek için kullanılır
+    ViewData["baslik"] = "Ana Sayfa";
+    Layout = "~/Views/Shared/_Sablon.cshtml";
+
+    // bu sayfanın Layout'u belirtilen pathdeki viewdır... Çalışma zamanında bu iki view birleştirikerek tek bir sayfa gibi render edilecektir..
+}
+
+Burasıda sitenin anasayfası
+
+
+
+@{ 
+    // Basit veri transfer objesi olarak düşününün.. Küçük veriler için tercih edililir..
+    ViewData["ogr1"] = "Serhat";
+    ViewData["ogr2"] = "Ekrem";
+    ViewData["ogr3"] = "Bahar";
+}

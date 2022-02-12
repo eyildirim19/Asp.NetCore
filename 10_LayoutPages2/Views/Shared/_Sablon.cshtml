@@ -1,0 +1,37 @@
+﻿<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>@ViewBag.Title</title>
+</head>
+<body>
+    <div>
+        <div>
+            Ben layotunun headerıyım....
+
+            <a asp-action="Index" asp-controller="Home">Anasayfa</a>
+            <br />
+            <a asp-action="Hakkimda" asp-controller="Home">Hakkımda</a>
+            <br />
+            <a asp-action="Iletisim" asp-controller="Home">İletişim</a>
+            <br />
+            <a asp-action="Login" asp-controller="Home">Giriş Yap</a>
+        </div>
+
+        <div>
+            @RenderBody()
+        </div>
+
+        <div>
+            Ben Layotuun footerıyım
+        </div>
+
+    </div>
+
+    @*
+        _ViewStart  => View"ların yüklenirken referans aldığı dosyasıdır. Views klasörüne eklenmelidir.BU dosyadaki c# komutu veya html komuları bütün viewlara yansıtılır.yani viewların kullandığı ortak başlangıç dosyasıdır...Genelde sayfaların layout path'i bu dosyada belirtilir. 
+        
+        *@
+</body>
+</html>

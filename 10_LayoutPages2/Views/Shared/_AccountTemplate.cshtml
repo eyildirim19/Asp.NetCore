@@ -1,0 +1,33 @@
+﻿<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>@ViewBag.Title</title>
+
+    <style>
+        #dvBg {
+            background-color: red;
+            height: 150px;
+            width: 100%;
+        }
+    </style>
+
+</head>
+<body>
+    <div>
+        <div id="dvBg">
+        </div>
+
+        @RenderBody()
+
+        <script src="~/lib/jquery/dist/jquery.js"></script>
+
+        @if (IsSectionDefined("MyScript")) // alt sayfada böyle bir section tanımlıysa....
+        {
+            @RenderSection("MyScript")// sectionı render et...
+        }
+
+    </div>
+</body>
+</html>

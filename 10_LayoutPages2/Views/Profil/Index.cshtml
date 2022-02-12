@@ -1,0 +1,9 @@
+﻿@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/_AccountTemplate.cshtml";
+}
+
+<h1>Hoş geldin  <b>@ViewData["loginUserName"]</b></h1>
+
+
+<a asp-action="UpdateProfil" asp-controller="Profil">Profilini Güncelle</a>
