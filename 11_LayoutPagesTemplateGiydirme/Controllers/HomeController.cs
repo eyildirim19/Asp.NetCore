@@ -6,11 +6,22 @@ using System.Threading.Tasks;
 
 namespace _11_LayoutPagesTemplateGiydirme.Controllers
 {
+    using Models;
     public class HomeController : Controller
     {
+        CategoryRepository repository;
+        public HomeController()
+        {
+            repository = new CategoryRepository();
+        }
+
         public IActionResult Index()
         {
-            return View();
+            HomeViewModel model = new HomeViewModel();
+            model.PageTitle = "Anasayfa";
+            model.Categories = repository.List();
+
+            return View(model);
         }
     }
 }

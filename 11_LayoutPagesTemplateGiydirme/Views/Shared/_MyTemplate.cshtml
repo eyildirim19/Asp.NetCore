@@ -8,7 +8,7 @@
 <html>
 <head>
     <meta name="viewport" content="width=device-width" />
-    <title>_MyTemplate</title>
+    <title>@ViewData["Title"]</title>
 
 
     <link rel="preconnect" href="https://fonts.gstatic.com">
@@ -136,6 +136,12 @@
     <script src="assets/js/animation.js"></script>
     <script src="assets/js/imagesloaded.js"></script>
     <script src="assets/js/custom.js"></script>
+
+    @if (IsSectionDefined("ValidateScript"))
+	{
+        @RenderSection("ValidateScript")
+	}
+
 
 </body>
 </html>

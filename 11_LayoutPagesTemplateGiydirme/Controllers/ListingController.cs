@@ -6,11 +6,20 @@ using System.Threading.Tasks;
 
 namespace _11_LayoutPagesTemplateGiydirme.Controllers
 {
+    using Models; // model namespacei ekle...
     public class ListingController : Controller
     {
         public IActionResult Index()
         {
-            return View();
+            PageHeadingViewModel _pageHeading = new PageHeadingViewModel();
+            _pageHeading.Title = "Check Out Our Listings";
+            _pageHeading.Text = "Item listings of Different Categories";
+
+            ListingViewModel model = new ListingViewModel();
+            model.PageTitle = "Liste";
+            model.PageHeading = _pageHeading;
+
+            return View(model);
         }
     }
 }

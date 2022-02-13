@@ -1,19 +1,14 @@
-﻿
+﻿@model ContactViewModel
+
 @{
-    ViewData["Title"] = "Index";
+    ViewData["Title"] = Model.PageTitle;
 }
 
 <div class="page-heading">
-    <div class="container">
-        <div class="row">
-            <div class="col-lg-8">
-                <div class="top-text header-text">
-                    <h6>Keep in touch with us</h6>
-                    <h2>Feel free to send us a message about your business needs</h2>
-                </div>
-            </div>
-        </div>
-    </div>
+    <!--Razor partial yerine TagHelper partial'ı kullanıyoruz...-->
+    @*@await Html.PartialAsync("_PageHeading", Model.PageHeading)*@ 
+
+    <partial name="_PageHeading" for="PageHeading" />
 </div>
 
 <div class="contact-page">
@@ -28,38 +23,57 @@
                             </div>
                         </div>
                         <div class="col-lg-6 align-self-center">
-                            <form id="contact" action="" method="get">
+
+                            @if (ViewData["mesaj"] != null)
+                            {
+                                <div id="dvMessage" class="alert alert-info">
+                                    @ViewData["mesaj"]
+                                </div>
+                            }
+
+
+                            <form id="contact" method="post" asp-controller="Contact" asp-action="Index">
                                 <div class="row">
                                     <div class="col-lg-6">
                                         <fieldset>
-                                            <input type="name" name="name" id="name" placeholder="Name" autocomplete="on" required>
+                                            <input type="text" asp-for="Name" placeholder="Name" autocomplete="off" />
+                                            <span asp-validation-for="Name" class="text-danger"></span>
                                         </fieldset>
                                     </div>
                                     <div class="col-lg-6">
                                         <fieldset>
-                                            <input type="surname" name="surname" id="surname" placeholder="Surname" autocomplete="on" required>
+                                            <input type="text" asp-for="SurName" placeholder="Surname" autocomplete="off" />
+                                            <span asp-validation-for="SurName" class="text-danger"></span>
                                         </fieldset>
                                     </div>
                                     <div class="col-lg-12">
                                         <fieldset>
-                                         
-                                            <input type="text" name="email" id="email" pattern="[^ @@]*@@[^ @@]*" placeholder="Your Email" required="">
-
-
+                                            <input type="text" asp-for="Email" placeholder="Your Email" autocomplete="off" />
+                                            <span asp-validation-for="Email" class="text-danger"></span>
                                         </fieldset>
                                     </div>
                                     <div class="col-lg-12">
                                         <ul>
-                                            <li><input type="checkbox" name="option1" value="cars"><span>Cars</span></li>
-                                            <li><input type="checkbox" name="option2" value="aparmtents"><span>Apartments</span></li>
-                                            <li><input type="checkbox" name="option3" value="shopping"><span>Shopping</span></li>
-                                            <li><input type="checkbox" name="option4" value="food"><span>Food &amp; Life</span></li>
-                                            <li><input type="checkbox" name="option5" value="traveling"><span>Traveling</span></li>
+                                            @{
+                                                List<SelectListItem> li = new List<SelectListItem>();
+                                                li.Add(new SelectListItem { Text = "Cars", Value = "cars" });
+                                                li.Add(new SelectListItem { Text = "Apartments", Value = "aparmtents" });
+                                                li.Add(new SelectListItem { Text = "Shopping", Value = "shopping" });
+                                                li.Add(new SelectListItem { Text = "Food & Live", Value = "food" });
+                                                li.Add(new SelectListItem { Text = "Traveling", Value = "traveling" });
+                                            }
+
+                                            @for (int i = 0; i < li.Count; i++)
+                                            {
+                                                // name ortak özellik olduğu için seçililer auto bind edilir.....
+                                                <li><input type="checkbox" name="Options" value="@li[i].Value"><span>@li[i].Text</span></li>
+                                            }
                                         </ul>
                                     </div>
                                     <div class="col-lg-12">
                                         <fieldset>
-                                            <textarea name="message" type="text" class="form-control" id="message" placeholder="Message" required=""></textarea>
+                                            <textarea asp-for="Message" type="text" class="form-control" placeholder="Message"></textarea>
+                                            <span asp-validation-for="Message" class="text-danger"></span>
                                         </fieldset>
                                     </div>
                                     <div class="col-lg-12">
@@ -76,3 +90,21 @@
         </div>
     </div>
 </div>
+
+@section ValidateScript{
+    <script src="~/lib/jquery-validation/dist/jquery.validate.js"></script>
+    <script src="~/lib/jquery-validation-unobtrusive/jquery.validate.unobtrusive.js"></script>
+
+
+    <script>
+
+        // 3 saniye sonra mesaj divini gizle
+        // setTimeout =>işaret edilen fonksiyonu belirtilen süre sonunda çalıştırır
+        setTimeout(function () {
+            $("#dvMessage").hide();
+        }, 5000);
+
+
+    </script>
+
+}
