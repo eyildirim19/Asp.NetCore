@@ -8,12 +8,13 @@ namespace _11_LayoutPagesTemplateGiydirme.Components
 {
     using Models;
     using Models.Repository;
+    using Models.Entities;
     public class PopularCategoryViewComponent : ViewComponent
     {
         CategoryRepository repository;
-        public PopularCategoryViewComponent()
+        public PopularCategoryViewComponent(ProjectDbContext dbContext)
         {
-            repository = new CategoryRepository();
+            repository = new CategoryRepository(dbContext);
         }
 
         public IViewComponentResult Invoke()

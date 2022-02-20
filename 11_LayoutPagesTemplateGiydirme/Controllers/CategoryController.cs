@@ -8,12 +8,13 @@ namespace _11_LayoutPagesTemplateGiydirme.Controllers
 {
     using Models; // model namespacei al...
     using Models.Repository;
+    using Models.Entities;
     public class CategoryController : Controller
     {
         CategoryRepository repository;
-        public CategoryController()
+        public CategoryController(ProjectDbContext dbContext)
         {
-            repository = new CategoryRepository();
+            repository = new CategoryRepository(dbContext);
         }
         public IActionResult Index()
         {

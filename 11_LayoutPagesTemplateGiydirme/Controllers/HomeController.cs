@@ -8,12 +8,14 @@ namespace _11_LayoutPagesTemplateGiydirme.Controllers
 {
     using Models;
     using Models.Repository;
+    using Models.Entities;
     public class HomeController : Controller
     {
         CategoryRepository repository;
-        public HomeController()
+        // dbContext instance startup dosyasındaki addDbContext metodu ile buraya, buradan da Repository'e gider...
+        public HomeController(ProjectDbContext dbContext)
         {
-            repository = new CategoryRepository();
+            repository = new CategoryRepository(dbContext);
         }
 
         public IActionResult Index()

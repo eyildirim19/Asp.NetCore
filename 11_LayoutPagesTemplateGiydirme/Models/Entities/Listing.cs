@@ -7,6 +7,8 @@ namespace _11_LayoutPagesTemplateGiydirme.Models.Entities
 {
     public class Listing
     {
+        public int ID { get; set; }
+
         public string Title { get; set; }
 
         public decimal Price { get; set; }
@@ -15,5 +17,9 @@ namespace _11_LayoutPagesTemplateGiydirme.Models.Entities
 
 
         public string ImagePath { get; set; }
+
+        public int CategoryID { get; set; }
+
+        public Category Category { get; set; }
     }
 }
