@@ -7,6 +7,7 @@ using System.Threading.Tasks;
 namespace _11_LayoutPagesTemplateGiydirme.Components
 {
     using Models;
+    using Models.Repository;
     public class PopularCategoryViewComponent : ViewComponent
     {
         CategoryRepository repository;

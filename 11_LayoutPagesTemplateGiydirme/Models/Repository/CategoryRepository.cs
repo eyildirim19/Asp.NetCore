@@ -3,8 +3,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace _11_LayoutPagesTemplateGiydirme.Models
+namespace _11_LayoutPagesTemplateGiydirme.Models.Repository
 {
+    using Models.Entities;
     public class CategoryRepository : IRepository<Category>
     {
         public List<Category> List()

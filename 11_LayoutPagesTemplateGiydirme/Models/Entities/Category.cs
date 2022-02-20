@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace _11_LayoutPagesTemplateGiydirme.Models
+namespace _11_LayoutPagesTemplateGiydirme.Models.Entities
 {
     public class Category
     {

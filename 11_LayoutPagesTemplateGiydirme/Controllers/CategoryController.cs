@@ -7,6 +7,7 @@ using System.Threading.Tasks;
 namespace _11_LayoutPagesTemplateGiydirme.Controllers
 {
     using Models; // model namespacei al...
+    using Models.Repository;
     public class CategoryController : Controller
     {
         CategoryRepository repository;

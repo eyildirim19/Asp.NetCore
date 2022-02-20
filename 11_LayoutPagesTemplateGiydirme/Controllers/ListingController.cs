@@ -11,6 +11,7 @@ namespace _11_LayoutPagesTemplateGiydirme.Controllers
     {
         public IActionResult Index()
         {
+
             PageHeadingViewModel _pageHeading = new PageHeadingViewModel();
             _pageHeading.Title = "Check Out Our Listings";
             _pageHeading.Text = "Item listings of Different Categories";
