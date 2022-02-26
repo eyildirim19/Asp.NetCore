@@ -40,51 +40,45 @@
                             <div class="col-lg-9">
                                 <ul class="nacc">
 
+                                    @{ int k = 0;}
                                     @foreach (var item in Model.Category)
                                     {
                                         var list = Model.Listings.Where(c => c.CategoryID == item.ID);
 
                                         <!-- first category listing of items -->
-                                        <li class="active">
+                                        string activeClassName = k++ == 0 ? "active" : "";
+
+                                        <li class="@activeClassName">
                                             <div>
                                                 <div class="col-lg-12">
                                                     <div class="owl-carousel owl-listing">
-
-                                                        @{ 
+                                                        @{
                                                             double courselItemCount = Convert.ToDouble(list.ToList().Count) / 3;
-                                                            courselItemCount = Math.Ceiling(courselItemCount); // 3 
+                                                            courselItemCount = Math.Ceiling(courselItemCount); // 3
                                                         }
-                                                        <div class="item">
-                                                            <span>@courselItemCount</span>
-                                                            <div class="row">
-                                                                @foreach (var subitem in list)
-                                                                {
-                                                                    <div class="col-lg-12">
-                                                                        <div class="listing-item">
-                                                                            <div class="left-image">
-                                                                                <a href="#"><img src="assets/images/listing-01.jpg" alt=""></a>
-                                                                                <div class="hover-content">
-                                                                                    <div class="main-white-button">
-                                                                                        <a href="contact.html"><i class="fa fa-eye"></i> Contact Now</a>
-                                                                                    </div>
-                                                                                </div>
-                                                                            </div>
-                                                                            <div class="right-content align-self-center">
-                                                                                <a href="#"><h4>@subitem.Title</h4></a>
-                                                                                <h6>by: Real ESTATE Agent</h6>
-                                                                                <span class="price"><div class="icon"><img src="assets/images/listing-icon-01.png" alt=""></div> @subitem.Price </span>
-                                                                                <span class="details">Details: <em>860 sq ft</em></span>
-                                                                                <span class="info">
-                                                                                    <img src="assets/images/@subitem.ImagePath" alt="" />
-                                                                                    2 Bedrooms<br>
-                                                                                    <img src="assets/images/listing-icon-03.png" alt=""> 3 Bathrooms
-                                                                                </span>
-                                                                            </div>
-                                                                        </div>
+
+                                                        @if (courselItemCount == 0)
+                                                        {
+                                                            <h1> İçerik Güncelleniyor... </h1>
+                                                        }
+                                                        else
+                                                        {
+                                                            for (int j = 0; j < courselItemCount; j++)
+                                                            {
+                                                                // Skip => n adet satır atla
+                                                                // Take => n adet seç (sql'deki top ifadesidir)
+                                                                var newList = list.OrderBy(c => c.ID).Skip(j * 3).Take(3).ToList();
+                                                                <div class="item">
+                                                                    <div class="row">
+                                                                        @foreach (var subitem in newList)
+                                                                        {
+                                                                            @*@await Html.PartialAsync("_ListContent",subitem)*@
+                                                                            <partial name="_ListContent" model="subitem"  />
+                                                                        }
                                                                     </div>
-                                                                }
-                                                            </div>
-                                                        </div>
+                                                                </div>
+                                                            }
+                                                        }
                                                     </div>
                                                 </div>
                                             </div>

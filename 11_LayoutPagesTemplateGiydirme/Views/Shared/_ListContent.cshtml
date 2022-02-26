@@ -1,0 +1,25 @@
+﻿@model Listing
+
+<div class="col-lg-12">
+    <div class="listing-item">
+        <div class="left-image">
+            <a href="#"><img src="assets/images/listing-01.jpg" alt=""></a>
+            <div class="hover-content">
+                <div class="main-white-button">
+                    <a href="contact.html"><i class="fa fa-eye"></i> Contact Now</a>
+                </div>
+            </div>
+        </div>
+        <div class="right-content align-self-center">
+            <a href="#"><h4>@Model.Title</h4></a>
+            <h6>by: Real ESTATE Agent</h6>
+            <span class="price"><div class="icon"><img src="assets/images/listing-icon-01.png" alt=""></div> @Model.Price </span>
+            <span class="details">Details: <em>860 sq ft</em></span>
+            <span class="info">
+                <img src="assets/images/@Model.ImagePath" alt="" />
+                2 Bedrooms<br>
+                <img src="assets/images/listing-icon-03.png" alt=""> 3 Bathrooms
+            </span>
+        </div>
+    </div>
+</div>
