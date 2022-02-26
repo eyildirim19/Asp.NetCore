@@ -1,0 +1,61 @@
+﻿@model int
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Index</title>
+    <script src="~/lib/jquery/dist/jquery.js"></script>
+    <script>
+        var counter= 0;
+        function Sayac() {
+            counter++;
+        //    document.getElementById("hSayac").innerHTML = counter;
+            $("#hSayac").html(counter);
+        }
+    </script>
+
+</head>
+<body>
+    
+    <a asp-action="Index" asp-controller="Account">Hesabıma git...</a>
+
+
+    @*
+        Http requestlerinde client ile server arasndaki trafikte kullanıcı bilgisayarında oluşan herşey response sonucu tekrar oluşur.. Bu da oluşan verinin silinmesi demektir. 
+
+        Bu veri kaybınına önüne veritabanı vs. gibi araçlar kullanılara geçilebilir...(kısmen)
+
+        Bu tür veri kayıplarının önüne geçmek içiçn state management kullanılır
+        Veriy'i fiziki bir yerde yazmak iki yöntemle saklayabilirz;
+
+        1)Server side;
+            Session =>  Oturum  demektir. Tarayıcı açıltığında kullanıcı için bir session oluşturulur. Default..Belli bir süre sonunda sonlandırılır.. Server client trafiğinde server'da veri saklamak için kullanlır..Uygulama içerisinde veriyi saklamak için istediğiniz kadar session oluşturabilirsiniz. Server tarafından sessionları yönetmek için bir session oluşturulur. Bunun dışında sizler istediğiniz kadar oluşturabilirsiniz...
+
+        Sessionların ömrü yanlış hatılamıyorsam 20 dakikadır. Yani 20 dakika boyunca severda işlem yapmazsanız kendiliğinden sonlaıdırlır.. Bu session düşmesi denir.
+
+
+        2)Client side;
+            Cookies =>
+            Query string =>
+        
+        
+        *@
+
+    <h1>Server Side</h1>
+    <form asp-action="Arttir" method="post">
+        <h1>@Model</h1>
+        <input type="submit" value="Arttır" />
+    </form>
+
+    @*submit button server'a request yapmak için kullanılır*@
+    <hr />
+    @*button clientta işlem yapmak için kullanılır*@
+    <h1>Client Side</h1>
+    <form>
+        <h1 id="hSayac">0</h1>
+        <input type="button" value="Arttır" onclick="Sayac()" />
+    </form>
+
+</body>
+</html>
