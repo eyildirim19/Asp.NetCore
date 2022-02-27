@@ -1,0 +1,39 @@
+﻿
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Index</title>
+
+    <script>
+
+        // Json(Javascript Object Notation) => Xml dili gibi işaretleme dilidir...
+        //[] json array
+        //{} json object
+        //http://jsonviewer.stack.hu/
+        // json object
+        var obj = { Adi: "Ekrem", SoyAdı: "Yıldırım", Calisiyormu: true };
+        var isimler = ["Furkan", "Önder", "Bahar", "Suna"];
+        var ogrs = ["Furkan", "Suna", "Bahar", "Semiha"];
+        var objArr = [{ Adi: "Önder", SoyAdi: "Coşkun", Calisiyormu: true }, { Adi: "Furkan", SoyAdi:"Tunç", Calisiyormu: false }];
+        debugger;
+        for (var i = 0; i<objArr.length; i++) {
+            if (objArr[i].Calisiyormu == true) {
+                console.log(objArr[i].Adi + " çalışıyormuş");
+            }
+        }
+    </script>
+</head>
+<body>
+
+    <p id="pa"></p>
+    <a asp-action="GetOgrencis" asp-controller="Json" target="_blank">Server string dizi örneği</a>
+    <a asp-action="GetOgrenciObject" asp-controller="Json" target="_blank">Serverdan json object öğrneği</a>
+
+</body>
+</html>

@@ -1,0 +1,141 @@
+﻿@model IndexViewModel
+@*Category sınıfımızı view'dan görememesinin nedeni namespacei tanımlı değildir...Models namespace default viewlardan erişilebelek şekilde tanımlnamışken sonradan oluşturulan OrnekModels namespacei haliyle viewlara tanılılmamıştır..Viewlardan bir sınıa erişmek için namespacei Views klasörü içerisinde ViewImports dosyasına eklenmelidir..(Bunu standart mvc'de config dosyasına yapıyorrduk)*@
+
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Index</title>
+    <link href="~/lib/bootstrap/dist/css/bootstrap.css" rel="stylesheet" />
+
+
+    <script src="~/lib/jquery/dist/jquery.js"></script>
+    <script src="~/lib/jquery-ajax-unobtrusive/jquery.unobtrusive-ajax.js"></script>
+
+
+</head>
+<body>
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-3">
+                <ul class="list-group">
+                    @foreach (Category item in Model.Categories)
+                    {
+                        <li class="list-group-item">@item.Name</li>
+                    }
+                </ul>
+            </div>
+            <div class="col-lg-9">
+
+                <form id="frmSearch" data-ajax="true" data-ajax-success="SearchResult" asp-action="SearchIlan" asp-controller="Home">
+                    <div class="form-group">
+                        <input type="text" placeholder="Aramak için birşeyler yaz..." id="SearchText" name="text" class="form-control form-control-sm" style="width:100%" />
+                    </div>
+                </form>
+
+                <div id="result">
+                </div>
+
+                <script>
+
+                    $(document).ready(function () {
+
+                        $("#SearchText").keyup(function () {
+
+                            var val = $(this).val();
+                            if (val.length == 0) {
+                                $("#result").html("");
+                            }
+                            else {
+                                $("#frmSearch").submit(); // formu submit et....
+                            }
+                        });
+
+                    });
+
+                    function SearchResult(resp) {
+
+                        $("#result").html(resp);
+
+                    }
+
+                </script>
+
+                <br />
+
+
+
+                <table class="table table-bordered">
+                    <tr>
+                        <td colspan="5">Sizin için seçmiştik...</td>
+                    </tr>
+                    <tr>
+                        <th colspan="2">Başlık</th>
+                        <th>Category</th>
+                        <th>Fiyat</th>
+                        <th>Eklenme Tarihi</th>
+                    </tr>
+                    @foreach (Listing item in Model.Listings)
+                    {
+                        <tr>
+                            <td rowspan="2">
+                                <img src="https://cdn4.iconfinder.com/data/icons/social-media-and-logos-11/32/Logo_Github-256.png" style="width:150px;" />
+                            </td>
+                            <td>@item.Title</td>
+                            <td>@item.Category.Name</td>
+                            <td>@item.Price</td>
+                            <td>@item.CreDate.ToShortDateString()</td>
+                        </tr>
+                        <tr>
+                            <td colspan="2">
+                                @*<a href="@Url.Action("Detay","Home",new { ListingID = item.Id })">DETAY</a>*@
+                                <a class="btn btn-primary form-control" asp-action="Detay" asp-controller="Home" asp-route-ListingID="@item.Id">İncele</a>
+                            </td>
+                            <td colspan="2">
+
+                                @*
+                                    data-ajax        => formun ajax requesti yapılacağı belirtilir..
+                                    data-ajax-succes => işlem başarılı olduğunda tetiklenecek javascript fonksiyonu belirtilir.
+                                    data-ajax-error => request esnasında hata olmadı durumda tetiklenecek javascript fonksiyonu..
+                                *@
+
+                                <form data-ajax="true" data-ajax-success="cevap" data-ajax-failure="hata" method="post" asp-action="SepeteAt" asp-controller="Home">
+                                    <!--hidden field..html'de gizli veri tutmak için kullanır..-->
+                                    <input type="hidden" value="@item.Id" name="ListId" />
+                                    <button class="btn btn-info form-control">Sepete Ekle</button>
+                                </form>
+                            </td>
+                        </tr>
+                    }
+                </table>
+
+                <script>
+
+                    function hata() {
+                        alert("bir hata oluştu");
+                    }
+
+                    function cevap(r) {
+                        if (r.code == 0) {
+                            alert(r.message);
+                        }
+                    }
+
+                </script>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
+
+@*
+    Ajax (Asnynronus Javascript and Xml) => (Javascript teknolojisir)Javascript ile server'a request yapıp, response durumunda sayfanın tamanını güncellemek yerine sadece belli bir kısmını güncellememizi sağlar. yani sayfa tamamen post edilmek yerine, refresh yapmadan post edilir gelen cevap sadece belli bir yerde güncellenir..
+
+    Ajax bir javascript teknolojisidir;
+    Javascript XmlHttpRequest nesnesi, Jquery ile Jquery.Ajax nesnesi ve Asp.net Mvc ile sunulan unobtrusive ajax teknoojisi ile kullanılabilir...
+*@ 
