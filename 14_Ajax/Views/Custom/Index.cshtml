@@ -12,10 +12,7 @@
     <meta name="viewport" content="width=device-width" />
     <title>Index</title>
     <link href="~/lib/bootstrap/dist/css/bootstrap.css" rel="stylesheet" />
-
-
     <script src="~/lib/jquery/dist/jquery.js"></script>
-    <script src="~/lib/jquery-ajax-unobtrusive/jquery.unobtrusive-ajax.js"></script>
 
 
 </head>
@@ -23,11 +20,6 @@
     <div class="container">
         <div class="row">
             <div class="col-lg-3">
-                @*<h1>  //Install-Package Microsoft.AspNetCore.Mvc.Razor.RuntimeCompilation</h1>*@
-
-                <a asp-action="Index" asp-controller="Custom">Aynısından bir daha var...</a>
-                <br />
-                <br />
                 <ul class="list-group">
                     @foreach (Category item in Model.Categories)
                     {
@@ -37,11 +29,11 @@
             </div>
             <div class="col-lg-9">
 
-                <form id="frmSearch" data-ajax="true" data-ajax-success="SearchResult" asp-action="SearchIlan" asp-controller="Home">
-                    <div class="form-group">
-                        <input type="text" placeholder="Aramak için birşeyler yaz..." id="SearchText" name="text" class="form-control form-control-sm" style="width:100%" />
-                    </div>
-                </form>
+
+                <div class="form-group">
+                    <input type="text" placeholder="Aramak için birşeyler yaz..." id="SearchText" name="text" class="form-control form-control-sm" style="width:100%" />
+                </div>
+
 
                 <div id="result">
                 </div>
@@ -51,22 +43,34 @@
                     $(document).ready(function () {
 
                         $("#SearchText").keyup(function () {
-
                             var val = $(this).val();
                             if (val.length == 0) {
                                 $("#result").html("");
                             }
                             else {
-                                $("#frmSearch").submit(); // formu submit et....
+                                // NOT : AJAX KONUSU ÖNEMLİDİR.....
+
+                                // jquery ajax...
+                                $.ajax({
+                                    type: "POST", // REQUEST TYPE
+                                    url: "@Url.Action("SearchIlan","Home")",
+                                    data: { text: val }, // gönderilecek parametre(ler)
+                                    dataType: "html",
+                                    success: function (r) {
+                                        console.log(r); // responsi ekrana yazdır..
+                                        $("#result").html(r);
+                                    },
+                                    error: function () {
+                                        alert("bir hata oluştu...");
+                                    }
+                                });
                             }
                         });
 
                     });
 
                     function SearchResult(resp) {
-
                         $("#result").html(resp);
-
                     }
 
                 </script>
@@ -109,17 +113,48 @@
                                     data-ajax-error => request esnasında hata olmadı durumda tetiklenecek javascript fonksiyonu..
                                 *@
 
-                                <form data-ajax="true" data-ajax-success="cevap" data-ajax-failure="hata" method="post" asp-action="SepeteAt" asp-controller="Home">
-                                    <!--hidden field..html'de gizli veri tutmak için kullanır..-->
-                                    <input type="hidden" value="@item.Id" name="ListId" />
-                                    <button class="btn btn-info form-control">Sepete Ekle</button>
-                                </form>
+
+                                <!--hidden field..html'de gizli veri tutmak için kullanır..-->
+                                <input type="hidden" value="@item.Id" name="ListId" />
+                                <button class="btn btn-info form-control" onclick="SepeteAt('@item.Id')">Sepete Ekle</button>
+
                             </td>
                         </tr>
                     }
                 </table>
 
                 <script>
+
+                    function SepeteAt(id) {
+                        var req = new XMLHttpRequest();//xhr // ajax requesti yapılırken kullanılan javascript  objesidir....
+                        req.open("POST", "@Url.Action("SepeteAt","Home")"); //reqeust yöntemi (POST,GET) ve yapılacak action adı
+
+                        var formData = new FormData();
+                        formData.append("ListId", id);
+
+
+                        // gelen cevabı yakalamak için
+                        req.onreadystatechange = function () {
+
+                            console.log(req.readyState); // request durumu
+                            if (req.readyState == 4) {
+
+                                var a = "4", b = "5";
+                                var result = parseInt(a) + parseInt(b);
+                                console.log(result);
+
+                                console.log(req.responseType + " " + req.responseText); // gelen cevabı yazdır...
+
+                                // gelen cevap text olarak geldiği için json olarak yorumlanmaz. sadece json formatta bir text gelir..
+                                var obj = JSON.parse(req.responseText);
+                                console.log(obj.message); // gelen cevabı ekrana yazdır...
+
+                            } // işlem tamamlandıysa...
+
+                        };
+
+                        req.send(formData); // requesti gönder.... (parametreleri gönder)
+                    }
 
                     function hata() {
                         alert("bir hata oluştu");

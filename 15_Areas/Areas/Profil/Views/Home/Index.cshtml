@@ -1,0 +1,20 @@
+﻿@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+<h1>ben profil  viewıyım...</h1>
+
+<a href="@Url.Action("Index","Account")"> Hesabıma git...</a>
+<br />
+<a href="@Url.Action("SifreGuncelle","Account")">Şifre Güncelle</a>
+
+<br />
+
+<a asp-action="Index" asp-controller="Account">Hesabıma git</a>
+<br />
+<br />
+<a asp-action="SifreGuncelle" asp-controller="Account">Hesabıma git</a>
+
+

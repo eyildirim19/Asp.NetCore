@@ -1,4 +1,4 @@
-using _14_Ajax.OrnekModels;
+using _16_ScaffoldingTemplate.Models;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.EntityFrameworkCore;
@@ -10,7 +10,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace _14_Ajax
+namespace _16_ScaffoldingTemplate
 {
     public class Startup
     {
@@ -19,18 +19,14 @@ namespace _14_Ajax
             Configuration = configuration;
         }
 
-        public IConfiguration Configuration { get; }// appsetting.json dosyasýný temsil eder..
+        public IConfiguration Configuration { get; }
 
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            // connectionstrini ve CmsProjectDbContext'Ýn instance'ný enjecte ediyoruz...
-            services.AddDbContext<CmsProjectDbContext>(options => options.UseSqlServer(Configuration.GetConnectionString("mycon")));
+            services.AddDbContext<CmsProjectDbContext>(conf => conf.UseSqlServer(Configuration.GetConnectionString("con")));
 
-            //Install-Package Microsoft.AspNetCore.Mvc.Razor.RuntimeCompilation
-            services.AddControllersWithViews().AddRazorRuntimeCompilation(); // runtime'da view'da yapýlan deðiþiklikleri görmek için
-            
-            
+            services.AddControllersWithViews();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -52,6 +48,11 @@ namespace _14_Ajax
 
             app.UseEndpoints(endpoints =>
             {
+                endpoints.MapControllerRoute(
+           name: "areas",
+           pattern: "{area:exists}/{controller=Home}/{action=Index}/{id?}"
+         );
+
                 endpoints.MapControllerRoute(
                     name: "default",
                     pattern: "{controller=Home}/{action=Index}/{id?}");

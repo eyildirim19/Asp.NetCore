@@ -29,7 +29,11 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "12_StateManagement", "12_St
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "13_StateManagement", "13_StateManagement\13_StateManagement.csproj", "{CDF0E4E3-90B0-4712-9D76-62E3D0A4A670}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "14_Ajax", "14_Ajax\14_Ajax.csproj", "{36934FEE-7F0E-4F5F-B5DD-FE459A413552}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "14_Ajax", "14_Ajax\14_Ajax.csproj", "{36934FEE-7F0E-4F5F-B5DD-FE459A413552}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "15_Areas", "15_Areas\15_Areas.csproj", "{E1C48A7F-2169-46E4-9DCE-B5AF930F503F}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "16_ScaffoldingTemplate", "16_ScaffoldingTemplate\16_ScaffoldingTemplate.csproj", "{87547502-60A5-40BE-9B2F-737EDF5F59B3}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -93,6 +97,14 @@ Global
 		{36934FEE-7F0E-4F5F-B5DD-FE459A413552}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{36934FEE-7F0E-4F5F-B5DD-FE459A413552}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{36934FEE-7F0E-4F5F-B5DD-FE459A413552}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E1C48A7F-2169-46E4-9DCE-B5AF930F503F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E1C48A7F-2169-46E4-9DCE-B5AF930F503F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E1C48A7F-2169-46E4-9DCE-B5AF930F503F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E1C48A7F-2169-46E4-9DCE-B5AF930F503F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{87547502-60A5-40BE-9B2F-737EDF5F59B3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{87547502-60A5-40BE-9B2F-737EDF5F59B3}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{87547502-60A5-40BE-9B2F-737EDF5F59B3}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{87547502-60A5-40BE-9B2F-737EDF5F59B3}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

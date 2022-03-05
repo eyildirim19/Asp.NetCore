@@ -1,0 +1,22 @@
+﻿
+@{
+    Layout = null;
+}
+<!DOCTYPE html>
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>_Sablon</title>
+</head>
+<body>
+    <a asp-action="Index" asp-controller="Home">Yönetim Anasayfa  </a>
+    <br />
+    <a asp-action="Index" asp-controller="Categories">Categori İşlemleri</a>
+    <br />
+    <a asp-action="Index" asp-controller="Contents">İçerik İşlemleri</a>
+    <div>
+        @RenderBody()
+    </div>
+
+</body>
+</html>
