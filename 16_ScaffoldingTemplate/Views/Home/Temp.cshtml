@@ -1,0 +1,18 @@
+﻿@model MyModel
+@{
+    ViewData["Title"] = "Temp";
+}
+
+<form data-ajax="true" method="post" asp-action="Temp" asp-controller="Home">
+    @*@Html.AntiForgeryToken()*@
+
+    <input type="text" name="Name" />
+    <br />
+    <input type="text" name="Title" />
+    <br />
+    <input type="submit" value="Kayıt Ol" />
+</form>
+
+@section Scripts{
+    <script src="~/lib/jquery-ajax-unobtrusive/jquery.unobtrusive-ajax.js"></script>
+}

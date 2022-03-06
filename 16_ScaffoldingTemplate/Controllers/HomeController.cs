@@ -23,6 +23,20 @@ namespace _16_ScaffoldingTemplate.Controllers
             return View(vm);
         }
 
+        public IActionResult Temp()
+        {
+            return View();
+        }
+
+        // Bind Attribute Action'da parametteden önce, sınıfta atrribute olarak  set edilir...
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public IActionResult Temp([Bind(include:"Name,Title")]MyModel model)
+        {
+           return View();
+        }
+
+
         public IActionResult SearchIlan(string text)
         {
             //t-sql deki like  c.Title.Contains(text)
