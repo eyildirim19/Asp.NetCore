@@ -145,6 +145,11 @@
                     <div class="row">
                         <div class="col-lg-12">
                             <form id="login-form" asp-action="Login" asp-controller="Account" method="post" role="form" style="display: block;">
+
+                                <!--html'de kullanılan gizli form elementleridir. oldukça kullanışlıdır. değer tutarlar ancak görünmezler... -->
+
+                                <input type="hidden" name="ReturnUrl" value="@ViewData["ReturnUrl"]" />
+
                                 <div class="form-group">
                                     <input type="text" name="username" id="username" tabindex="1" class="form-control" placeholder="Username" value="">
                                 </div>

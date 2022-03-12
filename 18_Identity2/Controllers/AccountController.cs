@@ -9,6 +9,7 @@ using System.Threading.Tasks;
 
 namespace _18_Identity2.Controllers
 {
+
     public class AccountController : Controller
     {
         RoleManager<AppRole> _roleManager; // rolleri yönetmek için
@@ -22,9 +23,10 @@ namespace _18_Identity2.Controllers
             _signInManager = signManager;
             _userManager = userManager;
         }
-
-        public IActionResult Index()
+        // ReturnUrl parametresi identity login yönlendirmelerine auto gelecektir. Gidilecek sayfa adı ReturnUrl'de tutulur.. 
+        public IActionResult Index(string ReturnUrl)
         {
+            ViewData["ReturnUrl"] = ReturnUrl; // ViewData ile view'a taşı....
             return View();
         }
 
@@ -48,13 +50,20 @@ namespace _18_Identity2.Controllers
         }
 
         [HttpPost]
-        public async Task<IActionResult> Login(string username, string password)
+        public async Task<IActionResult> Login(string ReturnUrl, string username, string password)
         {
             var result = await _signInManager.PasswordSignInAsync(username, password, false, false);
-
             if (result.Succeeded)
             {
-                return RedirectToAction("Index", "Home"); // Kullanıcıyı yönlendir...
+                //if (ReturnUrl != null || ReturnUrl != "")
+                if (String.IsNullOrWhiteSpace(ReturnUrl)) // içi boş veya null veya space karakter varsa true döner
+                {
+                    return RedirectToAction("Index", "Home"); // Kullanıcıyı yönlendir...
+                }
+                else
+                {
+                    return Redirect(ReturnUrl);
+                }
             }
 
             ViewData["LoginError"] = "Lütfen bilgilerinizi kontrol ediniz";
